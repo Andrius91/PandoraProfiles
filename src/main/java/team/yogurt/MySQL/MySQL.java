@@ -58,7 +58,16 @@ public class MySQL extends DatabaseManager {
             }
         }
     }
-    public void setLabel(String label, String username){
+    public void setLabel(String column, String value, String username){
+        try{
+            PreparedStatement ps2 = this.getConnection().prepareStatement(SET_LABEL.toString()
+                    .replace("%columname%", column));
+            ps2.setString(1, value);
+            ps2.setString(2, username);
+            ps2.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     public String getLabel(String label, String username){

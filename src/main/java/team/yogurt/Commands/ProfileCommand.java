@@ -6,24 +6,24 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import team.yogurt.Commands.SubCommands.*;
 import team.yogurt.Managers.CommandManager;
-import team.yogurt.PandoraProfiles;
 
 import java.util.ArrayList;
 
 import static team.yogurt.PandoraProfiles.getConf;
 import static team.yogurt.Utilities.color;
+import static team.yogurt.Utilities.sendMessage;
 
 public class ProfileCommand implements CommandExecutor {
-    private final PandoraProfiles plugin;
     ArrayList<CommandManager> commands = new ArrayList<>();
     private final String permission = getConf().getString("profiles.permission");
-    public ProfileCommand(PandoraProfiles plugin){
-        this.plugin = plugin;
+    public ProfileCommand(){
         commands.add(new Age());
         commands.add(new Discord());
         commands.add(new Facebook());
         commands.add(new Instagram());
         commands.add(new Twitter());
+        commands.add(new Twitch());
+        commands.add(new Youtube());
     }
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -35,10 +35,15 @@ public class ProfileCommand implements CommandExecutor {
                     sender.sendMessage(color("&cUse incorrectly!"));
                 }else {
                     for (CommandManager cmd : getCommands()) {
-                        if (args[0].equals(cmd.getName())) {
+                        if (args[0].equalsIgnoreCase(cmd.getName())) {
                             cmd.perform(sender, args);
                             return true;
                         }
+                    }
+                    sender.sendMessage(color("&5Commands:"));
+                    sender.sendMessage(" ");
+                    for(CommandManager cmd : getCommands()){
+                        sender.sendMessage(color("&d" + cmd.getSyntax() + "&f - &7"+ cmd.getDescription()));
                     }
                 }
             }else{

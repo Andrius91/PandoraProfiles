@@ -3,9 +3,12 @@ package team.yogurt.Commands.SubCommands;
 import org.bukkit.command.CommandSender;
 import team.yogurt.Managers.CommandManager;
 
+import java.util.ArrayList;
+
 import static team.yogurt.Utilities.color;
 
 public class Age extends CommandManager {
+    public static ArrayList<String> syncPlayers = new ArrayList<>();
     @Override
     public String getName() {
         return "age";
@@ -23,20 +26,9 @@ public class Age extends CommandManager {
 
     @Override
     public void perform(CommandSender sender, String[] args) {
-        if(args.length != 2) {
-            sender.sendMessage(color("&cComando incorrecto: " + getSyntax()));
-        } else {
-            try{
-                int age = Integer.parseInt(args[1]);
-                if(age > 6 && age < 100){
-                    sender.sendMessage(String.valueOf(age));
-                }else{
-                    sender.sendMessage(color("&cTu edad es inválida para esta época"));
-                }
-            }catch (NumberFormatException e){
-                sender.sendMessage(color("&cSolo puedes escribir números"));
-            }
-
+        if(args.length == 1) {
+            syncPlayers.add(sender.getName());
+            sender.sendMessage(color("&aIngresa tu edad:"));
         }
     }
 }

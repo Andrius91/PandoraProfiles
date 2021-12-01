@@ -2,32 +2,31 @@ package team.yogurt.Commands.SubCommands;
 
 import org.bukkit.command.CommandSender;
 import team.yogurt.Managers.CommandManager;
+import team.yogurt.Utilities;
 
 import java.util.ArrayList;
 
-import static team.yogurt.Utilities.color;
-
-public class Twitter extends CommandManager {
+public class Youtube extends CommandManager {
     public static ArrayList<String> syncPlayers = new ArrayList<>();
     @Override
     public String getName() {
-        return "twitter";
+        return "youtube";
     }
 
     @Override
     public String getDescription() {
-        return "Set your twitter";
+        return "Set your youtube channel";
     }
 
     @Override
     public String getSyntax() {
-        return "/profiles twitter <twitter>";
+        return "/profiles youtube";
     }
 
     @Override
     public void perform(CommandSender sender, String[] args) {
-        if(args.length == 1) {
-            sender.sendMessage(color("&aIngresa el url de tu twitter:"));
+        if(args.length == 1){
+            sender.sendMessage(Utilities.color("&cIngresa el url de tu canal: "));
             syncPlayers.add(sender.getName());
         }
     }

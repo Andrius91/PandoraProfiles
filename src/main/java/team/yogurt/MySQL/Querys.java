@@ -7,11 +7,13 @@ public enum Querys {
             + "age INT(2),"
             + "discord VARCHAR(37),"
             + "facebook VARCHAR(100),"
-            + "instagram VARCHAR(30),"
-            + "twitter VARCHAR(16),"
+            + "instagram VARCHAR(100),"
+            + "twitter VARCHAR(100),"
+            + "youtube VARCHAR(100),"
+            + "twitch VARCHAR(100),"
             + "PRIMARY KEY (username));"),
     GET_LABEL("SELECT * FROM users WHERE username=?;"),
-    SET_LABEL(""),
+    SET_LABEL("UPDATE users SET %columname% = ? WHERE username = ?;"),
 
     CREATE_USER("INSERT INTO users (username, uuid) VALUES (?, ?);"),
     USER_EXIST("SELECT * FROM users WHERE username=?;")

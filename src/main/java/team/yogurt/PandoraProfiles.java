@@ -3,6 +3,7 @@ package team.yogurt;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import team.yogurt.Commands.ProfileCommand;
+import team.yogurt.Listeners.ChatEventListener;
 import team.yogurt.Listeners.PlayerJoinListener;
 import team.yogurt.Managers.ConfigManager;
 import team.yogurt.MySQL.MySQL;
@@ -43,9 +44,10 @@ public final class PandoraProfiles extends JavaPlugin {
         return sql;
     }
     private void registerCommands(){
-        getCommand("profiles").setExecutor(new ProfileCommand(this));
+        getCommand("profiles").setExecutor(new ProfileCommand());
     }
     private void registerListeners(){
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        getServer().getPluginManager().registerEvents(new ChatEventListener(), this);
     }
 }

@@ -1,0 +1,7 @@
+name: PandoraProfiles
+version: '${project.version}'
+main: team.yogurt.PandoraProfiles
+prefix: PandoraProfiles
+authors: [ Andrius91 ]
+description: A Minercy Plugin
+website: www.minercy.net

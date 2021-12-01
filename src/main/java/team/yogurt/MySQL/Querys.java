@@ -10,8 +10,11 @@ public enum Querys {
             + "instagram VARCHAR(30),"
             + "twitter VARCHAR(16),"
             + "PRIMARY KEY (username));"),
-    GET_LABEL("SELECT * FROM users WHERE username=?;")
+    GET_LABEL("SELECT * FROM users WHERE username=?;"),
+    SET_LABEL(""),
 
+    CREATE_USER("INSERT INTO users (username, uuid) VALUES (?, ?);"),
+    USER_EXIST("SELECT * FROM users WHERE username=?;")
 
 
     ;

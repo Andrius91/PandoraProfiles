@@ -35,6 +35,32 @@ public class MySQL extends DatabaseManager {
             Utilities.sendMessage("MySQL Error - Not connected");
         }
     }
+    public boolean playerExist(String username){
+        try {
+            ps = this.getConnection().prepareStatement(USER_EXIST.toString());
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public void createNewUser(String username, String UUID){
+        if(!playerExist(username)){
+            try {
+                PreparedStatement ps2 = this.getConnection().prepareStatement(CREATE_USER.toString());
+                ps2.setString(1, username);
+                ps2.setString(2, UUID);
+                ps2.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void setLabel(String label, String username){
+    }
+
     public String getLabel(String label, String username){
         try {
             PreparedStatement ps2 = this.getConnection().prepareStatement(GET_LABEL.toString());

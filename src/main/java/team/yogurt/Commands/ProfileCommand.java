@@ -35,12 +35,9 @@ public class ProfileCommand implements CommandExecutor {
                     sender.sendMessage(color("&cUse incorrectly!"));
                 }else {
                     for (CommandManager cmd : getCommands()) {
-                        if (args[0].equalsIgnoreCase(cmd.getName())) {
+                        if (args[0].equals(cmd.getName())) {
                             cmd.perform(sender, args);
                             return true;
-                        }else{
-
-                            sender.sendMessage(cmd.getName() + " - " + cmd.getDescription());
                         }
                     }
                 }

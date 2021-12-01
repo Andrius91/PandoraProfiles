@@ -3,12 +3,13 @@ package team.yogurt;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import team.yogurt.Commands.ProfileCommand;
+import team.yogurt.Listeners.PlayerJoinListener;
 import team.yogurt.Managers.ConfigManager;
 import team.yogurt.MySQL.MySQL;
 
 public final class PandoraProfiles extends JavaPlugin {
     private static PandoraProfiles instance;
-    private MySQL sql;
+    private static MySQL sql;
 
 
     @Override
@@ -20,7 +21,12 @@ public final class PandoraProfiles extends JavaPlugin {
         sql = new MySQL();
         sql.createTables();
         registerCommands();
+        registerListeners();
         // Plugin startup logic
+    }
+    @Override
+    public void onDisable(){
+        sql.disconnect();
     }
 
     public static PandoraProfiles getInstance() {
@@ -33,7 +39,13 @@ public final class PandoraProfiles extends JavaPlugin {
     public static FileConfiguration getMySql(){
         return ConfigManager.getFile("mysql.yml");
     }
+    public static MySQL getSQL(){
+        return sql;
+    }
     private void registerCommands(){
         getCommand("profiles").setExecutor(new ProfileCommand(this));
+    }
+    private void registerListeners(){
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
     }
 }

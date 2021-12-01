@@ -5,3 +5,7 @@ prefix: PandoraProfiles
 authors: [ Andrius91 ]
 description: A Minercy Plugin
 website: www.minercy.net
+commands:
+  profiles:
+    description: "Configure your profile"
+    usage: "/profile <args>"

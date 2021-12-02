@@ -33,7 +33,7 @@ public class Twitter extends CommandManager {
         if(args.length == 1) {
             sender.sendMessage(color(getConf().getString(getName()+ ".execute-message")));
             syncPlayers.add(sender.getName());
-            Utilities.sendTitle((Player) sender, color(getConf().getString("discord.titles.title"))
+            Utilities.sendTitle((Player) sender, color(getConf().getString(getName()+ ".titles.title"))
                     , color(getConf().getString(getName()+ ".titles.subtitle"))
                     , getConf().getInt(getName()+ ".titles.fadeIn")
                     , getConf().getInt(getName()+ ".titles.stay")

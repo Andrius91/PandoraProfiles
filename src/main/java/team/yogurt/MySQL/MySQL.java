@@ -82,9 +82,8 @@ public class MySQL extends DatabaseManager {
                     return "Empty";
                 }
             }
-        }catch(SQLException e){
-            e.printStackTrace();
+        }catch(SQLException ignored){
         }
-        return "Empty";
+        return null;
     }
 }

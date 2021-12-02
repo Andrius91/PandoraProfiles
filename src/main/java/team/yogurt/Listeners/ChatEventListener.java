@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import team.yogurt.Commands.SubCommands.*;
 import team.yogurt.PandoraProfiles;
 
@@ -13,11 +14,25 @@ import static team.yogurt.Utilities.color;
 public class ChatEventListener implements Listener {
 
     @EventHandler
+    public void onCommand(PlayerCommandPreprocessEvent e){
+        String player = e.getPlayer().getName();
+        if(Age.syncPlayers.contains(player)
+                || Discord.syncPlayers.contains(player)
+                || Facebook.syncPlayers.contains(player)
+                || Instagram.syncPlayers.contains(player)
+                || Twitch.syncPlayers.contains(player)
+                || Twitter.syncPlayers.contains(player)
+                || Youtube.syncPlayers.contains(player)){
+            e.getPlayer().sendMessage(color("&cNo puedes ejecutar comandos mientras estás relleando una wea"));
+            e.setCancelled(true);
+        }
+
+    }
+    @EventHandler
     public void onChat(AsyncPlayerChatEvent e){
         Player p = e.getPlayer();
         String player = e.getPlayer().getName();
         String message = e.getMessage();
-
         //Age
         if(Age.syncPlayers.contains(player)){
             try{

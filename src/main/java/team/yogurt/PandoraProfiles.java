@@ -1,9 +1,11 @@
 package team.yogurt;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import team.yogurt.Commands.ProfileCommand;
 import team.yogurt.Listeners.ChatEventListener;
+import team.yogurt.Listeners.PlaceholdersListener;
 import team.yogurt.Listeners.PlayerJoinListener;
 import team.yogurt.Managers.ConfigManager;
 import team.yogurt.MySQL.MySQL;
@@ -23,6 +25,9 @@ public final class PandoraProfiles extends JavaPlugin {
         sql.createTables();
         registerCommands();
         registerListeners();
+        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null){
+            registerPlaceholders();
+        }
         // Plugin startup logic
     }
     @Override
@@ -50,4 +55,8 @@ public final class PandoraProfiles extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
         getServer().getPluginManager().registerEvents(new ChatEventListener(), this);
     }
+    private void registerPlaceholders(){
+        new PlaceholdersListener(this).register();
+    }
+
 }

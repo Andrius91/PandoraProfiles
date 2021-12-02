@@ -1,10 +1,13 @@
 package team.yogurt.Commands.SubCommands;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import team.yogurt.Managers.CommandManager;
 import team.yogurt.Utilities;
 
 import java.util.ArrayList;
+
+import static team.yogurt.Utilities.color;
 
 public class Twitch extends CommandManager {
     public static ArrayList<String> syncPlayers = new ArrayList<>();
@@ -20,7 +23,7 @@ public class Twitch extends CommandManager {
 
     @Override
     public String getSyntax() {
-        return "/pandora twitch";
+        return "/profiles twitch";
     }
 
     @Override
@@ -28,6 +31,8 @@ public class Twitch extends CommandManager {
         if(args.length == 1){
             sender.sendMessage(Utilities.color("&dIngresa el url de tu twitch:"));
             syncPlayers.add(sender.getName());
+            Utilities.sendTitle((Player) sender, color("&5Twitch"), color("&fEscríbelo en el chat"), 1, 20, 1);
+
         }
     }
 }

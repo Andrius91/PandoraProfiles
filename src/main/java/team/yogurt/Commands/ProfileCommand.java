@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 import static team.yogurt.PandoraProfiles.getConf;
 import static team.yogurt.Utilities.color;
-import static team.yogurt.Utilities.sendMessage;
 
 public class ProfileCommand implements CommandExecutor {
     ArrayList<CommandManager> commands = new ArrayList<>();

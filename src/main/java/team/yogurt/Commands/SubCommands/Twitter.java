@@ -1,7 +1,10 @@
 package team.yogurt.Commands.SubCommands;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import team.yogurt.Managers.CommandManager;
+import team.yogurt.PandoraProfiles;
+import team.yogurt.Utilities;
 
 import java.util.ArrayList;
 
@@ -21,7 +24,7 @@ public class Twitter extends CommandManager {
 
     @Override
     public String getSyntax() {
-        return "/profiles twitter <twitter>";
+        return "/profiles twitter";
     }
 
     @Override
@@ -29,6 +32,7 @@ public class Twitter extends CommandManager {
         if(args.length == 1) {
             sender.sendMessage(color("&aIngresa el url de tu twitter:"));
             syncPlayers.add(sender.getName());
+            Utilities.sendTitle((Player) sender, color("&9Twitter"), color("&fEscríbelo en el chat"), 1, 20, 1);
         }
     }
 }

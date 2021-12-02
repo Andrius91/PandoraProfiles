@@ -2,7 +2,9 @@ package team.yogurt.Commands.SubCommands;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import team.yogurt.Managers.CommandManager;
+import team.yogurt.Utilities;
 
 import java.util.ArrayList;
 
@@ -22,7 +24,7 @@ public class Discord extends CommandManager {
 
     @Override
     public String getSyntax() {
-        return "/profiles discord <Discord#9999>";
+        return "/profiles discord";
     }
 
     @Override
@@ -30,6 +32,8 @@ public class Discord extends CommandManager {
         if(args.length == 1) {
             sender.sendMessage(color("&aIngresa tu discord:"));
             syncPlayers.add(sender.getName());
+            Utilities.sendTitle((Player) sender, color("&bDiscord"), color("&fEscríbelo en el chat"), 1, 20, 1);
+
         }
 
 

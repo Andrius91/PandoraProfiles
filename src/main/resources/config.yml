@@ -13,7 +13,7 @@ age:
   only-numbers: "Solo puedes escribir números"
 discord:
   execute-message: "&fIngresa tu discord:"
-  successfully: "&asuccessfully - discord"
+  successfully-message: "&asuccessfully - discord"
   tag:
     short: "&cTu tag es muy corto"
     #Si es 0000 o si tiene más de 4 digitos

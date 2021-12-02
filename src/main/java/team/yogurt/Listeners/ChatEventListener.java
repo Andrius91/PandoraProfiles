@@ -54,26 +54,24 @@ public class ChatEventListener implements Listener {
         else if(Discord.syncPlayers.contains(player)){
             if(message.length() < 1){
                 p.sendMessage(color(getConf().getString("discord.tag.short")));
-                return;
             }
             if(!message.contains("#")){
                 p.sendMessage(color(getConf().getString("discord.tag.char-not-found")));
-                return;
-            }
-            String[] tag = message.split("#");
-            if(tag[0].length() > getConf().getInt("discord.tag.limit")){
-                p.sendMessage(color(getConf().getString("discord.tag.limit-message")));
-                return;
-            }
-            if(StringUtils.isNumeric(tag[1])){
-                if(tag[1].equalsIgnoreCase("0000") || tag[1].length() != 4){
-                    p.sendMessage(color(getConf().getString("discord.tag.invalid")));
-                }else{
-                    PandoraProfiles.getSQL().setLabel("discord", message, player);
-                    p.sendMessage(color(getConf().getString("discord.successfully-message")));
-                }
             }else{
-                p.sendMessage(color(getConf().getString("discord.tag.only-numbers")));
+                String[] tag = message.split("#");
+                if(tag[0].length() > getConf().getInt("discord.tag.limit")){
+                    p.sendMessage(color(getConf().getString("discord.tag.limit-message")));
+                }
+                if(StringUtils.isNumeric(tag[1])){
+                    if(tag[1].equalsIgnoreCase("0000") || tag[1].length() != 4){
+                        p.sendMessage(color(getConf().getString("discord.tag.invalid")));
+                    }else{
+                        PandoraProfiles.getSQL().setLabel("discord", message, player);
+                        p.sendMessage(color(getConf().getString("discord.successfully-message")));
+                    }
+                }else{
+                    p.sendMessage(color(getConf().getString("discord.tag.only-numbers")));
+                }
             }
             e.setCancelled(true);
             Discord.syncPlayers.remove(player);

@@ -8,6 +8,7 @@ import team.yogurt.Utilities;
 
 import java.util.ArrayList;
 
+import static team.yogurt.PandoraProfiles.getConf;
 import static team.yogurt.Utilities.color;
 
 public class Discord extends CommandManager {
@@ -30,10 +31,13 @@ public class Discord extends CommandManager {
     @Override
     public void perform(CommandSender sender, String[] args) {
         if(args.length == 1) {
-            sender.sendMessage(color("&aIngresa tu discord:"));
+            sender.sendMessage(color(getConf().getString(getName()+ ".execute-message")));
             syncPlayers.add(sender.getName());
-            Utilities.sendTitle((Player) sender, color("&bDiscord"), color("&fEscríbelo en el chat"), 1, 20, 1);
-
+            Utilities.sendTitle((Player) sender, color(getConf().getString("discord.titles.title"))
+                    , color(getConf().getString(getName()+ ".titles.subtitle"))
+                    , getConf().getInt(getName()+ ".titles.fadeIn")
+                    , getConf().getInt(getName()+ ".titles.stay")
+                    , getConf().getInt(getName()+ ".titles.fadeOut"));
         }
 
 

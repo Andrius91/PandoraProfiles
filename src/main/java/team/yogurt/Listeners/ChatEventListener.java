@@ -9,6 +9,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import team.yogurt.Commands.SubCommands.*;
 import team.yogurt.PandoraProfiles;
 
+import static team.yogurt.PandoraProfiles.getConf;
 import static team.yogurt.Utilities.color;
 
 public class ChatEventListener implements Listener {
@@ -37,14 +38,14 @@ public class ChatEventListener implements Listener {
         if(Age.syncPlayers.contains(player)){
             try{
                 int age = Integer.parseInt(message);
-                if(age > 6 && age < 100){
-                    p.sendMessage(String.valueOf(age));
+                if(age > 5 && age < 100){
+                    PandoraProfiles.getSQL().setLabel("age", String.valueOf(age), player);
+                    p.sendMessage(color(getConf().getString("age.successfully-message")));
                 }else{
-                    p.sendMessage(color("&cTu edad es inválida para esta época"));
+                    p.sendMessage(color(getConf().getString("age.invalid-age")));
                 }
-                PandoraProfiles.getSQL().setLabel("age", String.valueOf(age), player);
             }catch (NumberFormatException exception){
-                p.sendMessage(color("&cSolo puedes escribir números"));
+                p.sendMessage(color(getConf().getString("age.only-numbers")));
             }
             e.setCancelled(true);
             Age.syncPlayers.remove(e.getPlayer().getName());
@@ -52,27 +53,27 @@ public class ChatEventListener implements Listener {
         //Discord
         else if(Discord.syncPlayers.contains(player)){
             if(message.length() < 1){
-                p.sendMessage(color("&cTu tag es muy corto"));
+                p.sendMessage(color(getConf().getString("discord.tag.short")));
                 return;
             }
             if(!message.contains("#")){
-                p.sendMessage(color("&cNecesitas usar el #"));
+                p.sendMessage(color(getConf().getString("discord.tag.char-not-found")));
                 return;
             }
             String[] tag = message.split("#");
-            if(tag[0].length() > 16){
-                p.sendMessage(color("&cTu tag supera el límite"));
+            if(tag[0].length() > getConf().getInt("discord.tag.limit")){
+                p.sendMessage(color(getConf().getString("discord.tag.limit-message")));
                 return;
             }
             if(StringUtils.isNumeric(tag[1])){
                 if(tag[1].equalsIgnoreCase("0000") || tag[1].length() != 4){
-                    p.sendMessage(color("&cIngresa bien tu tag: " + tag[1]));
+                    p.sendMessage(color(getConf().getString("discord.tag.invalid")));
                 }else{
-                    p.sendMessage(color("&Tu discord es: "+ message));
                     PandoraProfiles.getSQL().setLabel("discord", message, player);
+                    p.sendMessage(color(getConf().getString("discord.successfully-message")));
                 }
             }else{
-                p.sendMessage(color("&cSolo puedes poner numeros po"));
+                p.sendMessage(color(getConf().getString("discord.tag.only-numbers")));
             }
             e.setCancelled(true);
             Discord.syncPlayers.remove(player);
@@ -80,10 +81,12 @@ public class ChatEventListener implements Listener {
 
         //Facebook
         else if(Facebook.syncPlayers.contains(player)){
-            if (message.startsWith("https://www.facebook.com/")) {
+            if (message.startsWith(getConf().getString("facebook.startsWith"))) {
                 PandoraProfiles.getSQL().setLabel("facebook", message, player);
+                p.sendMessage(color(getConf().getString("facebook.successfully-message")));
             } else {
-                p.sendMessage(color("&cEl link tiene que contener: https://www.facebook.com/<TuPerfil>"));
+                p.sendMessage(color(getConf().getString("facebook.invalid-url")
+                        .replace("%link%", getConf().getString("facebook.startsWith"))));
             }
             e.setCancelled(true);
             Facebook.syncPlayers.remove(player);
@@ -91,10 +94,12 @@ public class ChatEventListener implements Listener {
 
         //Instagram
         else if(Instagram.syncPlayers.contains(player)){
-            if (message.startsWith("https://www.instagram.com/")) {
+            if (message.startsWith(getConf().getString("instagram.startsWith"))) {
                 PandoraProfiles.getSQL().setLabel("instagram", message, player);
+                p.sendMessage(color(getConf().getString("instagram.successfully-message")));
             } else {
-                p.sendMessage(color("&cEl link tiene que contener: https://www.instagram.com/<ig>"));
+                p.sendMessage(color(getConf().getString("instagram.invalid-url")
+                        .replace("%link%", getConf().getString("instagram.startsWith"))));
             }
             e.setCancelled(true);
             Instagram.syncPlayers.remove(player);
@@ -103,10 +108,12 @@ public class ChatEventListener implements Listener {
 
         //Twitch
         else if(Twitch.syncPlayers.contains(player)){
-            if (message.startsWith("https://www.twitch.tv/")) {
+            if (message.startsWith(getConf().getString("twitch.startsWith"))) {
                 PandoraProfiles.getSQL().setLabel("twitch", message, player);
+                p.sendMessage(color(getConf().getString("twitch.successfully-message")));
             } else {
-                p.sendMessage(color("&cEl link tiene que contener: https://www.twitch.tv/<twitch>"));
+                p.sendMessage(color(getConf().getString("twitch.invalid-url")
+                        .replace("%link%", getConf().getString("twitch.startsWith"))));
             }
             e.setCancelled(true);
             Twitch.syncPlayers.remove(player);
@@ -114,10 +121,12 @@ public class ChatEventListener implements Listener {
 
         //Twitter
         else if(Twitter.syncPlayers.contains(player)){
-            if (message.startsWith("https://twitter.com/")) {
+            if (message.startsWith(getConf().getString("twitter.startsWith"))) {
                 PandoraProfiles.getSQL().setLabel("twitter", message, player);
+                p.sendMessage(color(getConf().getString("twitter.successfully-message")));
             } else {
-                p.sendMessage(color("&cEl link tiene que contener: https://twitter.com/<twitter>"));
+                p.sendMessage(color(getConf().getString("twitter.invalid-url")
+                        .replace("%link%", getConf().getString("twitter.startsWith"))));
             }
             e.setCancelled(true);
             Twitter.syncPlayers.remove(player);
@@ -125,10 +134,12 @@ public class ChatEventListener implements Listener {
 
         //Youtube
         else if(Youtube.syncPlayers.contains(player)){
-            if (message.startsWith("https://www.youtube.com/channel/")) {
+            if (message.startsWith(getConf().getString("youtube.startsWith"))) {
                 PandoraProfiles.getSQL().setLabel("youtube", message, player);
+                p.sendMessage(color(getConf().getString("youtube.successfully-message")));
             } else {
-                p.sendMessage(color("&cEl link tiene que contener: https://www.youtube.com/channel/<channel>"));
+                p.sendMessage(color(getConf().getString("youtube.invalid-url")
+                        .replace("%link%", getConf().getString("youtube.startsWith"))));
             }
             e.setCancelled(true);
             Youtube.syncPlayers.remove(player);

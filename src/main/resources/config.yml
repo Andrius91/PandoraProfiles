@@ -1,2 +1,87 @@
 profiles:
   permission: "profiles.use"
+age:
+  execute-message: "&fIngresa tu edad:"
+  successfully-message: "&asuccessfully - age"
+  titles:
+    fadeIn: 1
+    fadeOut: 1
+    stay: 20
+    title: "&5Edad"
+    subtitle: "&fEscribelo en el chat"
+  invalid-age: "Tu edad es inválida para está época"
+  only-numbers: "Solo puedes escribir números"
+discord:
+  execute-message: "&fIngresa tu discord:"
+  successfully: "&asuccessfully - discord"
+  tag:
+    short: "&cTu tag es muy corto"
+    #Si es 0000 o si tiene más de 4 digitos
+    invalid: "&cIngresa tu discord correctamente."
+    #Si no tiene el # pe
+    char-not-found: "&cNecesitas usar el #"
+    #Default: 16
+    limit: 16
+    limit-message: "&cTu tag supera el limite"
+    only-numbers: "Solo puedes escribir números"
+  titles:
+    fadeIn: 1
+    fadeOut: 1
+    stay: 20
+    title: "&5Discord"
+    subtitle: "&fEscribelo en el chat"
+facebook:
+  execute-message: "&fIngresa tu facebook:"
+  successfully-message: "&asuccessfully - facebook"
+  startsWith: "https://www.facebook.com/"
+  invalid-url: "&cEl link tiene que contener: %link%"
+  titles:
+    fadeIn: 1
+    fadeOut: 1
+    stay: 20
+    title: "&5Facebook"
+    subtitle: "&fEscribelo en el chat"
+instagram:
+  execute-message: "&fIngresa tu instagram:"
+  successfully-message: "&asuccessfully - instagram"
+  startsWith: "https://www.instagram.com/"
+  invalid-url: "&cEl link tiene que contener: %link%"
+  titles:
+    fadeIn: 1
+    fadeOut: 1
+    stay: 20
+    title: "&5Instagram"
+    subtitle: "&fEscribelo en el chat"
+twitch:
+  execute-message: "&fIngresa tu twitch:"
+  successfully-message: "&asuccessfully - twitch"
+  startsWith: "https://www.twitch.tv/"
+  invalid-url: "&cEl link tiene que contener: %link%"
+  titles:
+    fadeIn: 1
+    fadeOut: 1
+    stay: 20
+    title: "&5Twitch"
+    subtitle: "&fEscribelo en el chat"
+twitter:
+  execute-message: "&fIngresa tu twitter:"
+  successfully-message: "&asuccessfully - twitter"
+  startsWith: "https://twitter.com/"
+  invalid-url: "&cEl link tiene que contener: %link%"
+  titles:
+    fadeIn: 1
+    fadeOut: 1
+    stay: 20
+    title: "&5twitter"
+    subtitle: "&fEscribelo en el chat"
+youtube:
+  execute-message: "&fIngresa tu youtube:"
+  successfully-message: "&asuccessfully - youtube"
+  startsWith: "https://www.youtube.com/channel/"
+  invalid-url: "&cEl link tiene que contener: %link%"
+  titles:
+    fadeIn: 1
+    fadeOut: 1
+    stay: 20
+    title: "&5Youtube"
+    subtitle: "&fEscribelo en el chat"

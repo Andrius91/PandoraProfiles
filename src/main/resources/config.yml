@@ -1,5 +1,12 @@
 profiles:
+  invalid: "Invalid command: %syntax%"
+  no-media-found: "&cNo se ha encontrado la media."
+  no-player-found: "&cNo se ha encontrado al jugador."
+  set-media: "&fHas actualizado el &5%media% &fha&b %value% &fde &d%player%"
+  reset-media: "&fHas reseteado la &5%media% de &d%player%"
   permission: "profiles.use"
+  admin-permission: "profiles.admin"
+  no-permissions: "&cNo tienes permiso para usar esto."
 age:
   execute-message: "&fIngresa tu edad:"
   successfully-message: "&asuccessfully - age"

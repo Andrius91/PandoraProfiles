@@ -1,6 +1,7 @@
 package team.yogurt.Commands.SubCommands.Admin;
 
 import org.bukkit.command.CommandSender;
+import team.yogurt.Commands.ProfileCommand;
 import team.yogurt.Commands.SubCommands.Admin.subcommands.Medias;
 import team.yogurt.Commands.SubCommands.Admin.subcommands.Reset;
 import team.yogurt.Commands.SubCommands.Admin.subcommands.Set;
@@ -55,7 +56,13 @@ public class Admin extends CommandManager {
             sender.sendMessage(color(getConf().getString("profiles.no-permissions")));
         }
     }
-
+    public static ArrayList<String> getMedias(){
+        ArrayList<String> medias = new ArrayList<>();
+        for (CommandManager command : ProfileCommand.getCommands()) {
+            medias.add(command.getName());
+        }
+        return medias;
+    }
     private ArrayList<CommandManager> getAdminsubs(){
         return adminsub;
     }

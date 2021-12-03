@@ -5,8 +5,6 @@ import team.yogurt.Commands.ProfileCommand;
 import team.yogurt.Managers.CommandManager;
 import team.yogurt.PandoraProfiles;
 
-import java.util.Locale;
-
 import static team.yogurt.PandoraProfiles.getConf;
 import static team.yogurt.Utilities.color;
 
@@ -33,21 +31,20 @@ public class Reset extends CommandManager {
                     .replace("%syntax%", getSyntax())));
         }else{
             String player = args[2];
-            String media = args[3].toLowerCase(Locale.ROOT);
             if(PandoraProfiles.getSQL().playerExist(player)){
-                for(CommandManager cmds : ProfileCommand.getCommands()){
-                    if(cmds.getName().equals(media.replace("admin", ""))){
+                String media = args[3];
+                for(CommandManager cmd : ProfileCommand.getCommands()){
+                    sender.sendMessage(cmd.getName());
+                    if(cmd.getName().equalsIgnoreCase(media)){
                         PandoraProfiles.getSQL().setLabel(media, null, player);
                         //Reset
                         sender.sendMessage(color(getConf().getString("profiles.reset-media")
                                 .replace("%media%", media)
                                 .replace("%player%", player)));
-                    }else{
-                        //No media found
-                        sender.sendMessage(color(getConf().getString("profiles.no-media-found")));
                         return;
                     }
                 }
+                sender.sendMessage(color(getConf().getString("profiles.no-media-found")));
             }else{
                 //No player found
                 sender.sendMessage(color(getConf().getString("profiles.no-player-found")));

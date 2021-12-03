@@ -1,7 +1,7 @@
 package team.yogurt.Commands.SubCommands.Admin.subcommands;
 
 import org.bukkit.command.CommandSender;
-import team.yogurt.Commands.ProfileCommand;
+import team.yogurt.Commands.SubCommands.Admin.Admin;
 import team.yogurt.Managers.CommandManager;
 import team.yogurt.PandoraProfiles;
 
@@ -16,7 +16,7 @@ public class Set extends CommandManager {
 
     @Override
     public String getDescription() {
-        return "Set a variable in player";
+        return "Set a media in player";
     }
 
     @Override
@@ -31,22 +31,20 @@ public class Set extends CommandManager {
                     .replace("%syntax%", getSyntax())));
         }else{
             String player = args[2];
-            String media = args[3];
-            String value = args[4];
             if(PandoraProfiles.getSQL().playerExist(player)){
-                for(CommandManager cmds : ProfileCommand.getCommands()){
-                    if(cmds.getName().equals(media.replace("admin", ""))){
+                String media = args[3];
+                for(String mediaList : Admin.getMedias()){
+                    if(mediaList.equalsIgnoreCase(media)){
+                        String value = args[4];
                         PandoraProfiles.getSQL().setLabel(media, value, player);
                         sender.sendMessage(color(getConf().getString("profiles.set-media")
                                 .replace("%media%", media)
                                 .replace("%player%", player)
                                 .replace("%value%", value)));
-                    }else{
-                        //No media found
-                        sender.sendMessage(color(getConf().getString("profiles.no-media-found")));
                         return;
                     }
                 }
+                sender.sendMessage(color(getConf().getString("profiles.no-media-found")));
             }else{
                 //No player found
                 sender.sendMessage(color(getConf().getString("profiles.no-player-found")));

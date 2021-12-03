@@ -13,7 +13,7 @@ import static team.yogurt.PandoraProfiles.getConf;
 import static team.yogurt.Utilities.color;
 
 public class ProfileCommand implements CommandExecutor {
-    private static ArrayList<CommandManager> commands = new ArrayList<>();
+    private static final ArrayList<CommandManager> commands = new ArrayList<>();
     private final String permission = getConf().getString("profiles.permission");
 
     public ProfileCommand() {

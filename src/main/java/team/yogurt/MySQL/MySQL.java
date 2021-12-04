@@ -79,7 +79,7 @@ public class MySQL extends DatabaseManager {
                 if (rs.getString(label) != null){
                     return rs.getString(label);
                 }else{
-                    return "Empty";
+                    return PandoraProfiles.getConf().getString("profiles.empty-placeholder");
                 }
             }
         }catch(SQLException ignored){

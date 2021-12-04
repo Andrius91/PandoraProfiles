@@ -3,7 +3,6 @@ package team.yogurt.Commands.SubCommands.Admin.subcommands;
 import org.bukkit.command.CommandSender;
 import team.yogurt.Commands.ProfileCommand;
 import team.yogurt.Managers.CommandManager;
-import team.yogurt.Utilities;
 
 import static team.yogurt.Utilities.color;
 

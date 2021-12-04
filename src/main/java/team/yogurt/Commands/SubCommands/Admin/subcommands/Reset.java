@@ -34,7 +34,6 @@ public class Reset extends CommandManager {
             if(PandoraProfiles.getSQL().playerExist(player)){
                 String media = args[3];
                 for(CommandManager cmd : ProfileCommand.getCommands()){
-                    sender.sendMessage(cmd.getName());
                     if(cmd.getName().equalsIgnoreCase(media)){
                         PandoraProfiles.getSQL().setLabel(media, null, player);
                         //Reset

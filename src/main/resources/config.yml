@@ -1,4 +1,5 @@
 profiles:
+  empty-placeholder: "Not found"
   invalid: "Invalid command: %syntax%"
   no-media-found: "&cNo se ha encontrado la media."
   no-player-found: "&cNo se ha encontrado al jugador."
